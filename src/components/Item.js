@@ -9,7 +9,7 @@ const Item = (props) => {
   const { id, title, description, price, pictureUrl, selectItem } = props;
 
   return (
-    <div className="col col-md-6 col-lg-3 m-2">
+    <div className="col col-md-6 col-lg-3 m-auto">
       <div
         id={id}
         className="card border-dark text-center m-2"
@@ -30,13 +30,13 @@ const Item = (props) => {
           <li className="list-group-item">
             <strong>${price}</strong>
           </li>
-          <li className="list-group-item">
+          {/* <li className="list-group-item">
             <ItemCount stock="10" initial="1" />
-          </li>
+          </li> */}
         </ul>
         <div className="card-body">
           <Link exact to={`/item/${id}`} className=" btn btnItems">
-            detalle
+            ver mas
           </Link>
         </div>
       </div>

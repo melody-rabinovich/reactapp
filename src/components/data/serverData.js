@@ -11,6 +11,7 @@ import gibson1 from "../../assets/imagenes/gibson-lespaul50.jpeg";
 import gibson2 from "../../assets/imagenes/gibson-lespaul60.jpeg";
 // Fender
 import fender1 from "../../assets/imagenes/fender-srv.jpeg";
+
 export default [
     {
       id: 0,
@@ -19,6 +20,7 @@ export default [
       price: 999,
       pictureUrl:taylor1,
       categoria: "taylor",
+      stock:10
     },
     {
         id: 1,
@@ -27,6 +29,7 @@ export default [
         price: 999,
         pictureUrl:taylor2,
         categoria: "taylor",
+        stock:20
       },
       {
         id: 2,
@@ -35,6 +38,7 @@ export default [
         price: 60000,
         pictureUrl:martin1,
         categoria: "martin",
+        stock:5
       },
       {
         id: 3,
@@ -43,6 +47,7 @@ export default [
         price: 75000,
         pictureUrl:martin2,
         categoria: "martin",
+        stock:10
       },
       {
         id: 4,
@@ -51,6 +56,7 @@ export default [
         price: 28900,
         pictureUrl:martin3,
         categoria: "martin",
+        stock:10
       },
       {
         id: 5,
@@ -59,6 +65,7 @@ export default [
         price: 28900,
         pictureUrl:gibson1,
         categoria: "gibson",
+        stock:5
       },
       {
         id: 6,
@@ -67,6 +74,7 @@ export default [
         price: 28900,
         pictureUrl:gibson2,
         categoria: "gibson",
+        stock:10
       },
       {
         id: 7,
@@ -75,6 +83,7 @@ export default [
         price: 999,
         pictureUrl:taylor3,
         categoria: "taylor",
+        stock:15
       },
       {
         id: 8,
@@ -83,5 +92,6 @@ export default [
         price: 2000,
         pictureUrl:fender1,
         categoria: "fender",
+        stock:5
     },
   ];

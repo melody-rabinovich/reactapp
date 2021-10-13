@@ -7,7 +7,7 @@ function NavBar() {
   return (
 
     <nav className="navbar navbar-expand-lg navbar-light">
-      <div className="container-fluid"></div>
+      <div className="container-fluid">
       <Link className="navbar-brand d-flex" exact to="/">
           <img src={logo192} className="logoNav" alt="logoReact"></img>
         </Link>
@@ -48,11 +48,12 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="# ">
-                <CartWidget number=" 0" />
-              </a>
+              <Link className="nav-link" exact to="/cart">
+                  <CartWidget number="0" />
+              </Link>
             </li>
           </ul>
+        </div>
         </div>
     </nav>
   );

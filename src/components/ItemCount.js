@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const ItemCount = (props) => {
 
-    const { stock, initial } = props;
-   
+    const { stock, initial, cartItems, setCartItems } = props;
+
     const [count , setCount] = useState(parseInt(initial));
 
     const restarCount = () => {
@@ -17,13 +18,13 @@ const ItemCount = (props) => {
         }
     }
     const agregarAlCarrito = () => {
-        if ( count > 0 && count <= stock){
-            alert("SE AGREGARON TODOS LOS ITEMS ELEGIDOS AL CARRITO");
-        }
-        else{
-            alert("NO SE AGREGARON ITEMS AL CARRITO");
-        }
+    if (count > 0 && count <= stock) {
+      alert("SE AGREGARON TODOS LOS ITEMS ELEGIDOS AL CARRITO");
+      setCartItems(cartItems + count);
+    } else {
+      alert("NO SE AGREGARON ITEMS AL CARRITO");
     }
+  };
 
 
 
