@@ -1,0 +1,33 @@
+.logoNav {
+    width: 90px;
+    border-radius: 50%;
+    border: solid #c49a77;
+}
+.navItemsStyles{
+    color:#51260e;
+    text-decoration: none;
+    margin: 1.5em;
+}
+.navItemsStyles:hover{
+    color:#c49a77;
+}
+.brandName {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.nav-link{
+    margin:2em;
+    padding:2em;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+nav{
+    background-color: #dfd7d1;
+}
+
+.icon{
+    color:#51260e;
+    size: 11cm;
+}
