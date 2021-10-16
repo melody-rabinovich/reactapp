@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ItemDetail from "./ItemDetail";
 import serverData from "./data/serverData.js";
 import { useParams } from "react-router-dom";
+
 const ItemDetailContainer = ({
   selectedItem,
   selectItem,
@@ -30,7 +31,7 @@ const ItemDetailContainer = ({
 
       return (
         <div className="row text-center">
-          {item && <ItemDetail {...item} selectItem={selectItem} />}
+          {item && <ItemDetail {...item} />}
         </div>
       );
     };

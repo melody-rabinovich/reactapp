@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemCount = (props) => {
 
-    const { stock, initial, cartItems, setCartItems } = props;
+    const { stock, initial, cartItems, setCartItems, onAdd } = props;
 
     const [count , setCount] = useState(parseInt(initial));
 
@@ -17,25 +17,16 @@ const ItemCount = (props) => {
         setCount(count + 1)
         }
     }
-    const agregarAlCarrito = () => {
-    if (count > 0 && count <= stock) {
-      alert("SE AGREGARON TODOS LOS ITEMS ELEGIDOS AL CARRITO");
-      setCartItems(cartItems + count);
-    } else {
-      alert("NO SE AGREGARON ITEMS AL CARRITO");
-    }
-  };
-
 
 
  return (
         <>
         <div className="input-group mb-3">
-            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={restarCount}>-</button>
+            <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={restarCount()}>-</button>
             <input type="text" className="form-control text-center" placeholder={count} aria-label="Example text with button addon" aria-describedby="button-addon1" />
-            <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={sumarCount}>+</button>
+            <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={sumarCount()}>+</button>
         </div>
-        <button className="btn btnCount w-100" onClick={ agregarAlCarrito}>Agregar al Carrito</button>
+        <button className="btn btnCount w-100"  onClick={() => onAdd(count)}>Agregar al Carrito</button>
         </>
     );
 }
