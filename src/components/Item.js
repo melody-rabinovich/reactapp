@@ -6,7 +6,7 @@ import './css/Item.css'
 
 
 const Item = (props) => {
-  const { id, title, description, price, pictureUrl, selectItem } = props;
+  const { id, title, description, price, pictureUrl } = props;
 
   return (
     <div className="col col-md-6 col-lg-3 m-auto">
@@ -35,7 +35,7 @@ const Item = (props) => {
           </li> */}
         </ul>
         <div className="card-body">
-          <Link exact to={`/item/${id}`} className=" btn btnItems">
+          <Link to={`/item/${id}`} className=" btn btnItems">
             ver mas
           </Link>
         </div>

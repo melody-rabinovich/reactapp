@@ -4,35 +4,30 @@ import ItemDetail from "./ItemDetail";
 import serverData from "./data/serverData.js";
 import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = ({
-  selectedItem,
-  selectItem,
-  setLoading,
-  setError,
-}) => {
-    const [item, setItem] = useState(null);
-    const { id: itemId } = useParams();
+const ItemDetailContainer = ({ setLoading, setError }) => {
+  const [item, setItem] = useState([]);
 
-    const getItems = new Promise((resolve, reject) => {
-        const idProducto = serverData.find((item) => item.id === parseInt(itemId));
-        setTimeout(() => {
-          resolve(idProducto);
-          reject("Error al enviar id producto");
-        }, 2000);
-      });
+  const { id: itemId } = useParams();
 
-      useEffect(async () => {
-        setLoading(true);
-        await getItems
-          .then((response) => setItem(response))
-          .catch((err) => setError(err));
-        setLoading(false);
-      }, [itemId]);
-
-      return (
-        <div className="row text-center">
-          {item && <ItemDetail {...item} />}
-        </div>
+  const getItems = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const idProducto = serverData.find(
+        (item) => item.id === parseInt(itemId)
       );
-    };
-    export default ItemDetailContainer;
+      resolve(idProducto);
+      reject("Error al enviar id producto");
+    }, 2000);
+  });
+
+  useEffect(async () => {
+    setLoading(true);
+    await getItems
+      .then((response) => setItem(response))
+      .catch((err) => setError(err));
+    setLoading(false);
+  }, [itemId]);
+
+  return <ItemDetail item={item} />;
+};
+
+ export default ItemDetailContainer;

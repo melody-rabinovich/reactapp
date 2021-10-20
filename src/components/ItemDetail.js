@@ -8,20 +8,23 @@ import { useCartContext } from "./CartContext";
 
 export const ItemDetail = (item) => {
 
-  const { id, title, description, price, stock, pictureUrl } = item;
-  const { addItem } = useCartContext();
+  const { id, title, description, price, stock, pictureUrl } = item.item;
+  const { cartList, agregarItem } = useCartContext();
+
+  console.log(cartList);
+
   const history = useHistory();
 
-  const [cartItems, setCartItems] = useState(null);
-
-  const onAdd = (qty) => {
-    addItem(item, qty);
-    setCartItems(item);
+  const onAdd = (cant) => {
+    console.log(cant);
+    agregarItem(item.item, cant);
   };
   
   const closeDetail = () => history.goBack();
 
   return (
+    <>
+    {(id, title, description, price, stock, pictureUrl) ? (
     <div className="row">
       <div
         id={id}
@@ -43,30 +46,18 @@ export const ItemDetail = (item) => {
             <strong>${price}</strong>
           </li>
           <li className="list-group-item">
-              {cartItems ? (
-                <>
-                  <ItemCount
-                    onAdd={onAdd}
-                    stock={stock}
-                    initial="1"
-                    cartItems={cartItems}
-                    setCartItems={setCartItems}
-                  />
-                  <Link exact to="/cart">
-                    <button className="btn btnCount">
-                      Finalizar compra
-                    </button>
-                  </Link>
-                </>
-              ) : (
-                <ItemCount
-                  onAdd={onAdd}
-                  stock={stock}
-                  initial="1"
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              )}
+                {cartList.length > 0 ? (
+                  <>
+                    <ItemCount onAdd={onAdd} stock={stock} initial="1" />
+                    <Link to="/cart">
+                      <button className="btn btnCount my-3">
+                        finalizar compra
+                      </button>
+                    </Link>
+                  </>
+                ) : (
+                  <ItemCount onAdd={onAdd} stock={stock} initial="1" />
+                )}
             </li>
         </ul>
         <div>
@@ -76,7 +67,11 @@ export const ItemDetail = (item) => {
         </div>
       </div>
     </div>
-    );
+     ) : (
+      <h1> </h1>
+    )}
+  </>
+);
 };
 
 export default ItemDetail;

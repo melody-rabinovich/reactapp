@@ -3,9 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemCount = (props) => {
 
-    const { stock, initial, cartItems, setCartItems, onAdd } = props;
-
-    const [count , setCount] = useState(parseInt(initial));
+    const { stock, initial, onAdd } = props;
+    const [count, setCount] = useState(parseInt(initial));
 
     const restarCount = () => {
         if (count >= 1){

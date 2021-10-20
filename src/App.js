@@ -14,7 +14,6 @@ function App() {
 
   return (
     <>
-    {/* creo que esto es CartContext.Provider */}
       <CartContextProvider>
         <Router>
           <NavBar />
@@ -48,7 +47,7 @@ function App() {
               />
             </Route>
             
-            <Route exact path="/cart">
+            <Route path="/cart">
               <Cart />
             </Route>
           </Switch>

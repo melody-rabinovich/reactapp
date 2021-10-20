@@ -1,41 +1,57 @@
 import { createContext, useContext, useState } from "react";
 
-const CartContext = createContext();
+export const CartContext = createContext([]);
+
 export const useCartContext = () => useContext(CartContext);
 
 export const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
-
-    const addItem = (item, quantity) => {
+    const [cartList, setCartList] = useState([]);
+    console.log(cartList);
+    const agregarItem = (item, quantity) => {
         if (isInCart(item.id)) {
-            const updateQty = [...cart];
-            updateQty.map((element) => {
-                if (element.item.id === item.id) {
-                  element.quantity += quantity;
-                }
-              });
-              setCart(updateQty);
-            } else {
-              setCart([...cart, { item, quantity }]);
+          const updateQty = [...cartList]; 
+
+          updateQty.map((element) => {
+            if (element.item.id === item.id) {
+              element.quantity += quantity;
             }
-        };
-
-        const isInCart = (id) => {
-            cart.find((element) => element.item.id === id);
-          };
-        
-        const clearCart = () => setCart([]);
-
-        const removeItem = (id) => {
-            const cartFilter = cart.filter((element) => element.item.id !== id);
-            setCart(cartFilter);
-          };
-        
-          console.log("carrito", cart);
-
-  return (
-    <CartContext.Provider value={{ cart, addItem, clearCart, removeItem }}>
-      {children}
-    </CartContext.Provider>
-  );
-};
+          });
+          setCartList(updateQty); 
+          window.sessionStorage.setItem("cart", JSON.stringify(updateQty));
+        } else {
+          const carro = [...cartList, { item, quantity }];
+          setCartList(carro); 
+          window.sessionStorage.setItem("cart", JSON.stringify(carro));
+        }
+      };
+    
+      const isInCart = (id) => cartList.find((element) => element.item.id === id);
+    
+      const clearCart = () => setCartList([]);
+    
+      const removeItem = (id) => {
+        const cartFilter = cartList.filter((element) => element.item.id !== id);
+        setCartList(cartFilter);
+      };
+    
+      const cartProducts = cartList.reduce(
+        (acc, product) => (acc += product.quantity),
+        0
+      );
+    
+      return (
+        <CartContext.Provider
+          value={{
+            cartList,
+            agregarItem,
+            setCartList,
+            clearCart,
+            removeItem,
+            cartProducts,
+          }}
+        >
+          {children}
+        </CartContext.Provider>
+      );
+    };
+    

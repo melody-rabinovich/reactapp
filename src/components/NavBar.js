@@ -8,9 +8,10 @@ function NavBar() {
 
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
-      <Link className="navbar-brand d-flex" exact to="/">
-          <img src={logo192} className="logoNav" alt="logoReact"></img>
+        <Link className="navbar-brand d-flex" exact to="/">
+            <img src={logo192} className="logoNav" alt="logoReact"></img>
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -48,9 +49,9 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" exact to="/cart">
-                  <CartWidget number="0" />
-              </Link>
+              <a className="nav-link" href="# ">
+                <CartWidget />
+              </a>
             </li>
           </ul>
         </div>
