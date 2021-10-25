@@ -10,7 +10,6 @@ export const ItemDetail = (item) => {
 
   const { id, title, description, price, stock, pictureUrl } = item.item;
   const { cartList, agregarItem } = useCartContext();
-
   console.log(cartList);
 
   const history = useHistory();
