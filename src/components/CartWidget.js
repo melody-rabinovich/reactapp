@@ -4,22 +4,26 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import { CgShoppingCart } from "react-icons/cg";
 import './css/NavBar.css';
 import { useCartContext } from "./CartContext";
+import { Link } from "react-router-dom";
+
 
 const CartWidget = () => {
   const { cartProducts } = useCartContext();
 
   return(
     <>
-  <button className="btn">
-    <CgShoppingCart className="icon" />
-    &nbsp;
-    {cartProducts > 0 ? (
-      <span className="badge bg-secondary">{cartProducts}</span>
-    ) : (
-      ""
-    )}
-  </button>
-  </>
+      <Link to="/cart">
+        <button className="btn">
+          <CgShoppingCart className="icon" />
+          &nbsp;
+          {cartProducts > 0 ? (
+            <span className="badge bg-secondary">{cartProducts}</span>
+          ) : (
+            ""
+          )}
+        </button>
+      </Link>
+    </>
   )
   
 };

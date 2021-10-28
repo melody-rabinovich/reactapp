@@ -7,6 +7,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import CartWidget from "./components/CartWidget";
 import Cart from "./components/Cart";
 import { CartContextProvider } from "./components/CartContext";
+import Checkout from "./components/Checkout";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -50,6 +51,11 @@ function App() {
             <Route path="/cart">
               <Cart />
             </Route>
+
+            <Route path="/checkout">
+              <Checkout />
+            </Route>
+            
           </Switch>
 
           {error && <div>{error}</div>}

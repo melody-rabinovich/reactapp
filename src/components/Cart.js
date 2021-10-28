@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button, Container, ListGroup } from "react-bootstrap";
 
 const Cart = () => {
-  const { cartList, clearCart, removeItem } = useCartContext();
+  const { cartList, clearCart, removeItem, totalPrice } = useCartContext();
   console.log(cartList);
 
   return (
@@ -43,7 +43,7 @@ const Cart = () => {
                       >
                         Eliminar producto del carrito
                       </button>
-                      
+
                       <h3>Precio: $ {item.item.price} </h3>
                       <h3>Descripción: {item.item.description} </h3>
                       <img
@@ -58,18 +58,31 @@ const Cart = () => {
               );
             })}
           </div>
-          <button
-            className="btn bg-warning my-3"
-            //cuando se clickea se ejecuta una funcion que llama a "removeItem" con parametro el id del item a remover
-            onClick={clearCart}
-          >
-            Vaciar Carrito
-          </button>
+          <div className="row">
+            <p className=" col-6 my-3 mx-auto">
+              Total: ${totalPrice}
+            </p>
+            <button
+              className="btn bg-warning my-3 col-4 mx-auto"
+              onClick={clearCart}
+            >
+              Vaciar Carrito
+            </button>
+          </div>
+          <div>
+            <Link to="/Checkout">
+              <button
+                className="btn bg-success my-3 col-6 mx-auto py-3"
+              >
+                Finalizar Compra
+              </button>
+            </Link>
+          </div>
         </>
       ) : (
         <Link to="/">
           <button className="btn btn-success my-3">
-            El carrito no contiene items
+            No hay items en el carrito
           </button>
         </Link>
       )}

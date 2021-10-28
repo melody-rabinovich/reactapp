@@ -38,6 +38,12 @@ export const CartContextProvider = ({ children }) => {
         (acc, product) => (acc += product.quantity),
         0
       );
+
+      const totalPrice = cartList.reduce(
+        (acc, product) => (acc += product.item.price * product.quantity),
+        0
+      );
+      parseInt(totalPrice);
     
       return (
         <CartContext.Provider
@@ -48,6 +54,7 @@ export const CartContextProvider = ({ children }) => {
             clearCart,
             removeItem,
             cartProducts,
+            totalPrice,
           }}
         >
           {children}

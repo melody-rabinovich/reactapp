@@ -50,7 +50,7 @@ export const ItemDetail = (item) => {
                     <ItemCount onAdd={onAdd} stock={stock} initial="1" />
                     <Link to="/cart">
                       <button className="btn btnCount my-3">
-                        finalizar compra
+                        ir al carrito
                       </button>
                     </Link>
                   </>
