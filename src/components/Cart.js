@@ -1,93 +1,72 @@
-import React from "react";
-import { useCartContext } from "./CartContext";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import React, {useState}  from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
+import { CartContextUse } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cartList, clearCart, removeItem, totalPrice } = useCartContext();
-  console.log(cartList);
-
+  const { clear, removeItem, cart, totalPrice, addQuantity, reduceQuantity } = CartContextUse();
+  
+  console.log("hola")
   return (
-    <>
-      <div className="container text-center">
-      <h1 className="display-1">Carrito</h1>
-      {cartList.length > 0 ? (
-        <>
-          <div className="accordion">
-            {cartList.map((item) => {
-              return (
-                <div className="accordion-item" key={item.item.id}>
-                  <h2 className="accordion-header">
-                    <button
-                      className="accordion-button"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      {item.item.title}
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#accordionExample"
-                  >
-                    <div class="accordion-body">
-                      <button
-                        className="btn bg-danger"
-                        onClick={() => removeItem(item.item.id)}
-                      >
-                        Eliminar producto del carrito
-                      </button>
+    <Container>
+      <div className="d-flex align-items-center flex-column">
+        <h3 className="text-center mt-5">Carrito de compras</h3>
+        {cart.map((element) => {
+          return (
+            <>
+              <ListGroup horizontal className="mt-3">
+                <ListGroup.Item>
+                  <img
+                    src={element.item.imageUrl}
+                    alt="imagen"
+                    className="w-25"
+                  ></img>
+                </ListGroup.Item>
+                <ListGroup.Item>{element.item.title}</ListGroup.Item>
+                <ListGroup.Item>${element.item.price}</ListGroup.Item>
+                <ListGroup.Item> {element.item.description}</ListGroup.Item>
+                <ListGroup.Item>
+                  <div className="d-flex">
+                    <Button variant="secondary" onClick={() => reduceQuantity(element) }>-</Button>
+                    
+                    <input
+                      className="text-center"
+                      type="text"
+                      value={element.quantity}
+                    ></input>
+                    <Button variant="secondary" onClick={() =>  addQuantity(element) }>+</Button>
+                  </div>{" "}
+                </ListGroup.Item>
+                <Button
+                  variant="secondary"
+                  onClick={() => removeItem(element.item.id)}
+                >
+                  Quitar producto
+                </Button>
+              </ListGroup>
+            </>
+          );
+        })}
 
-                      <h3>Precio: $ {item.item.price} </h3>
-                      <h3>Descripción: {item.item.description} </h3>
-                      <img
-                        src={item.item.pictureUrl}
-                        className="card-img-top p-1 m-auto"
-                        style={{ height: "32rem", width: "18rem" }}
-                        alt="..."
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="row">
-            <p className=" col-6 my-3 mx-auto">
-              Total: ${totalPrice}
-            </p>
-            <button
-              className="btn bg-warning my-3 col-4 mx-auto"
-              onClick={clearCart}
-            >
-              Vaciar Carrito
-            </button>
-          </div>
-          <div>
-            <Link to="/Checkout">
-              <button
-                className="btn bg-success my-3 col-6 mx-auto py-3"
-              >
-                Finalizar Compra
-              </button>
-            </Link>
-          </div>
-        </>
-      ) : (
-        <Link to="/">
-          <button className="btn btn-success my-3">
-            No hay items en el carrito
-          </button>
+        {cart.length > 0 ? (
+          <>
+            {" "}
+            <h5 className="mt-5 align-self-end text-center">
+              Total a pagar: ${totalPrice}
+            </h5>
+            <Link to="/cart/checkout" className="btn btn-outline-secondary mt-5 align-self-end">Finalizar compra</Link>
+            <Button onClick={clear} className="w-25 mt-5" variant="secondary">
+              Vaciar carrito
+            </Button>{" "}
+          </>
+        ) : (
+          <h5>El carrito esta vacio </h5>
+        )}
+        <Link to="/" className="btn btn-dark mt-3 w-25">
+          Seguir comprando
         </Link>
-      )}
-    </div>
-    </>
+      </div>
+    </Container>
   );
 };
 

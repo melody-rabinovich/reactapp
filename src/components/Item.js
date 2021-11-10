@@ -1,46 +1,24 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import ItemCount from "./ItemCount";
+import { Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import './css/Item.css'
 
-
-const Item = (props) => {
-  const { id, title, description, price, pictureUrl } = props;
+function Item(item) {
+  const {  title, stock, imageUrl } = item.item;
 
   return (
-    <div className="col col-md-6 col-lg-3 m-auto">
-      <div
-        id={id}
-        className="card border-dark text-center m-2"
-        className="card border-dark text-center "
-        style={{ width: "18rem" }}
-      >
-        <img
-          src={pictureUrl}
-          className="card-img-top p-1"
-          alt="..."
-          //onClick={() => selectItem({ ...props })}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
-        </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <strong>${price}</strong>
-          </li>
-          {/* <li className="list-group-item">
-            <ItemCount stock="10" initial="1" />
-          </li> */}
-        </ul>
-        <div className="card-body">
-          <Link to={`/item/${id}`} className=" btn btnItems">
-            ver mas
-          </Link>
-        </div>
-      </div>
-    </div>
+    <Card style={{ width: "18rem" }} className="text-center me-4 mt-3">
+      <Card.Img variant="top" className="mt-3" src={imageUrl} />
+      <Card.Body className="text-dark">
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+          <Badge className="bg-dark">Stock: {stock}</Badge>
+        </Card.Text>
+        <Link className="btn btn-secondary" to={`/item/${title}`}>
+          Ver detalle
+        </Link>
+      </Card.Body>
+    </Card>
   );
-};
+}
+
 export default Item;

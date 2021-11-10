@@ -1,76 +1,49 @@
-import React, {useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Card, Container, Spinner } from "react-bootstrap";
 import ItemCount from "./ItemCount";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import './css/Item.css';
-import { useCartContext } from "./CartContext";
+import { CartContextUse } from "../context/CartContext";
 
-export const ItemDetail = (item) => {
+const ItemDetail = (item) => {
+  const {  title, imageUrl, description, price, stock } = item.item;
 
-  const { id, title, description, price, stock, pictureUrl } = item.item;
-  const { cartList, agregarItem } = useCartContext();
-  console.log(cartList);
-
-  const history = useHistory();
-
-  const onAdd = (cant) => {
-    console.log(cant);
-    agregarItem(item.item, cant);
+  //Context Api
+  const { addItem, cart } = CartContextUse();
+  const onAdd = (qty) => {
+    addItem(item.item, qty);
   };
-  
-  const closeDetail = () => history.goBack();
 
   return (
-    <>
-    {(id, title, description, price, stock, pictureUrl) ? (
-    <div className="row">
-      <div
-        id={id}
-        className="card border-dark text-center m-auto "
-        style={{ width: "30rem" }}
-      >
-        <img
-          src={pictureUrl}
-          className="card-img-top p-1 m-auto"
-          style={{ height: "32rem", width: "18rem" }}
-          alt="..."
-        />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{description}</p>
-        </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <strong>${price}</strong>
-          </li>
-          <li className="list-group-item">
-                {cartList.length > 0 ? (
-                  <>
-                    <ItemCount onAdd={onAdd} stock={stock} initial="1" />
-                    <Link to="/cart">
-                      <button className="btn btnCount my-3">
-                        ir al carrito
-                      </button>
-                    </Link>
-                  </>
-                ) : (
-                  <ItemCount onAdd={onAdd} stock={stock} initial="1" />
-                )}
-            </li>
-        </ul>
-        <div>
-          <button onClick={closeDetail} className="btn btnItems w-50 p-1 m-2">
-            volver
-          </button>
-        </div>
-      </div>
-    </div>
-     ) : (
-      <h1> </h1>
-    )}
-  </>
-);
+    <Container className="d-flex justify-content-center">
+      {(title, imageUrl, description, price, stock) ? (
+        <Card style={{ width: "18rem" }} className="text-center me-4 mt-3">
+          <Card.Img variant="top" className="mt-3 ps-3 pe-3" src={imageUrl} />
+          <Card.Body className="text-dark">
+            <Card.Title>
+              <h4>{title}</h4>
+            </Card.Title>
+            <Card.Text>{description}</Card.Text>
+            <h5>${price}</h5>
+            <ItemCount stock={stock} initial={0} onAdd={onAdd} />
+            {cart.length > 0 ? (
+              <div>
+                <Link to="/cart" className="btn btn-dark m-3">
+                  Ir al carrito
+                </Link>
+              </div>
+            ) : (
+              console.log("Para finalizar compra primero agregar algo")
+            )}
+            <Link className="btn btn-secondary" to="/">
+              Volver
+            </Link>
+          </Card.Body>
+        </Card>
+      ) : (
+        <Spinner animation="border" variant="secondary" />
+      )}
+    </Container>
+  );
 };
 
 export default ItemDetail;

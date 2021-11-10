@@ -1,62 +1,47 @@
-import "./css/NavBar.css";
-import logo192 from "./../assets/imagenes/logo192.png";
+import { Navbar, Container, Nav } from "react-bootstrap";
+import logo from "../img/logo.png";
+import "../css/navBar.css";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import { CartContextUse } from "../context/CartContext"
 
+ 
 function NavBar() {
+  const { cartProducts } = CartContextUse();
+
   return (
-
-    <nav className="navbar navbar-expand-lg navbar-light">
-      <div className="container-fluid">
-        <Link className="navbar-brand d-flex" exact to="/">
-            <img src={logo192} className="logoNav" alt="logoReact"></img>
-        </Link>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav d-flex">
-            <li className="nav-item">
-              <Link className="nav-link navItemsStyles" to="/categoria/taylor">
-                Guitarras Taylor
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link navItemsStyles" to="/categoria/martin">
-                Guitarras Martin & Co
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link navItemsStyles"
-                to="/categoria/gibson"
-              >
-                Guitarras Gibson
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link navItemsStyles" to="/categoria/fender">
-                Guitarras Fender
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="# ">
-                <CartWidget />
-              </a>
-            </li>
-          </ul>
-        </div>
-        </div>
-    </nav>
+    <Navbar expand="lg">
+      <Container>
+        <Navbar.Brand>
+          <Link to="/">
+            <img className="logo" src={logo} width="140" alt="logo" />
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="text-center">
+          <Nav className="ms-auto">
+            <Link to="/" className="me-3 nav-link">
+              Inicio{" "}
+            </Link>
+            <Link to="/category/taylor" className="me-3 nav-link">
+              Guitarras Taylor
+            </Link>
+            <Link to="/category/martin" className="me-3 nav-link">
+              Guitarras Martin & Co
+            </Link>
+            <Link to="/category/gibson" className="me-3 nav-link">
+              Guitarras Gibson
+            </Link>
+            <Link to="/category/fender" className="me-3 nav-link">
+              Guitarras Fender
+            </Link>
+            <Link to="/cart" className="nav-link active">
+              <CartWidget/>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 

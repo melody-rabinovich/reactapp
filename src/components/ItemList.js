@@ -1,25 +1,16 @@
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import Item from "./Item";
-
-// const ItemList = ({ items, selectItem }) => (
-//     <div className="row text-center">
-//     {items.map((item) => (
-//       <Item {...item} selectItem={selectItem} key={item.id} />
-//     ))}
-//   </div>
-// );
-// export default ItemList;
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Item from "./Item";
+import { Spinner } from "react-bootstrap";
 
-const ItemList = ({ items }) => (
-  <div className="row text-center">
-    {items.map((item) => (
-      <Item {...item} key={item.id} />
-    ))}
-  </div>
-);
-
+function ItemList({ items }) {
+  return (
+    <>
+      {items.length > 0 ? (
+        items.map((product, id) => <Item key={id} item={product} />)
+      ) : (
+        <Spinner animation="border" variant="secondary" />
+      )}
+    </>
+  );
+}
 export default ItemList;

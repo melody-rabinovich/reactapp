@@ -1,31 +1,23 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
-import { CgShoppingCart } from "react-icons/cg";
-import './css/NavBar.css';
-import { useCartContext } from "./CartContext";
-import { Link } from "react-router-dom";
+import React from "react"
+import { FaShoppingCart } from "react-icons/fa"
+import '../css/cartWidget.css';
+import { CartContextUse } from "../context/CartContext"
+
+
 
 
 const CartWidget = () => {
-  const { cartProducts } = useCartContext();
-
-  return(
-    <>
-      <Link to="/cart">
-        <button className="btn">
-          <CgShoppingCart className="icon" />
-          &nbsp;
-          {cartProducts > 0 ? (
-            <span className="badge bg-secondary">{cartProducts}</span>
-          ) : (
-            ""
-          )}
-        </button>
-      </Link>
-    </>
-  )
-  
+  const { cartProducts } = CartContextUse();
+  return (
+    <div className="cartContainer">
+      <FaShoppingCart className="cart me-1" />
+      {cartProducts > 0 ? (
+        <span className="badge bg-secondary">{cartProducts}</span>
+      ) : (
+        ""
+      )}
+    </div>
+  );
 };
 
 export default CartWidget;

@@ -1,107 +1,41 @@
 import React, { useState, useEffect } from "react";
 import ItemList from "./ItemList";
-// import ItemDetailContainer from "./ItemDetailContainer";
 import { useParams } from "react-router-dom";
-// import serverData from "./data/serverData.js";
-import { getFirestore } from "../firebase/index";
+import { getFirestore } from "../firebase";
 
+function ItemListContainer() {
+  const [product, setProduct] = useState([]);
+  const { category: productCategory } = useParams();
 
-const ItemListContainer = ({ text, loading, setLoading, setError }) => {
+  useEffect(() => {
+    const getProducts = async () => {
 
-    const [items, setItems] = useState([]);
-    const { id: idCategoria } = useParams();
-
-    // reemplazo la promise por firestore
-    useEffect(() => {
-      const getItems = async () => {
-        setLoading(true);
+      try {
         const { docs } = await getFirestore().collection("serverData").get();
-        const arrayCompleto = docs.map((item) => ({
-          id: item.id,
-          ...item.data(),
-        }));
-  
-        if (idCategoria) {
-          const filtrarCategoria = arrayCompleto.filter(
-            (item) => item.categoria === idCategoria
+        const newArray = await docs.map((item) => ({ id: item.id, ...item.data() }));
+
+        if (productCategory) {
+          const filterCategory = await newArray.filter(
+            (item) => item.category === productCategory
           );
-          setItems(filtrarCategoria);
-          setLoading(false);
+          setProduct(filterCategory);
         } else {
-          setItems(arrayCompleto);
-          setLoading(false);
+          setProduct(newArray);
         }
-      };
-      getItems();
-    }, [idCategoria]);
+      } catch (e) { console.log(e) }
+    };
+    getProducts();
+  }, [productCategory]);
 
-    return (
-      <div className="container text-center">
-        <h1 className="text-center py-2">{text}</h1>
-  
-        {loading ? loading : <ItemList items={items} />}
-      </div>
-    );
-    // --------
-  //   const getItems = new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     if (idCategoria) {
-  //       const filtroCategoria = serverData.filter(
-  //         (item) => item.categoria === idCategoria
-  //       );
-  //       resolve(filtroCategoria);
-  //     } else {
-  //       resolve(serverData);
-  //     }
-  //     reject("Hubo un error al traer los items");
-  //   }, 2000);
-  // });
-    
-  // useEffect(async () => {
-  //   setItems([]);
-  //   setLoading(true);
-  //   await getItems
-  //     .then((response) => setItems(response))
-  //     .catch((err) => setError(err));
-  //   setLoading(false);
-  // }, [idCategoria]);
+  return (
+    <>
+      {
+        <div className="text-white text-center mt-5 d-flex justify-content-center row">
+          <ItemList items={product} />
+        </div>
+      }
+    </>
+  );
+}
 
-  // const obtenerData = new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     resolve(serverData);
-  //     reject("Hubo un error al obtener los datos del servidor");
-  //   }, 2000);
-  // });
-
-  // useEffect(async () => {
-  //   setLoading(true);
-  //   await obtenerData
-  //     .then((data) => {
-  //       setItems(data);
-  //     })
-  //     .catch((err) => {
-  //       setError(err);
-  //     });
-  //   setLoading(false);
-  // }, []);
-
-  // const selectItem = (item) => setSelectedItem(item);
-
-  // return (
-  //   <div className="container text-center">
-  //     <h1 className="text-center py-2">{text}</h1>
-
-  //     {!selectedItem ? (
-  //       <ItemList items={items} selectItem={selectItem} />
-  //     ) : (
-  //       <ItemDetailContainer
-  //         selectedItem={selectedItem}
-  //         selectItem={selectItem}
-  //         setError={setError}
-  //         setLoading={setLoading}
-  //       />
-  //     )}
-  //   </div>
-  // );
-};
 export default ItemListContainer;
