@@ -11,10 +11,10 @@ function Item(item) {
       <Card.Body className="text-dark">
         <Card.Title>{title}</Card.Title>
         <Card.Text>
-          <Badge className="bg-dark">Stock: {stock}</Badge>
+          <Badge className="bg-light text-dark">Stock: {stock}</Badge>
         </Card.Text>
         <Link className="btn btn-secondary" to={`/item/${title}`}>
-          Ver detalle
+          Ver mas
         </Link>
       </Card.Body>
     </Card>

@@ -1,2 +1,6 @@
+.logo{filter: invert();}
 
-/* .logo{filter: invert();} */
+header{
+    background-color: rgb(230, 230, 230);
+    padding:0 ;
+}

@@ -23,7 +23,7 @@ function NavBar() {
             <Link to="/" className="me-3 nav-link">
               Inicio{" "}
             </Link>
-            <Link to="/category/taylor" className="me-3 nav-link">
+            <Link to="/category/taylor" className="me-3 nav-link ">
               Guitarras Taylor
             </Link>
             <Link to="/category/martin" className="me-3 nav-link">
