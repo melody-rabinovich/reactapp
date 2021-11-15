@@ -41,14 +41,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
           </div>
 
           {counter > 0 ? (
-            <Button
+            <button
               onClick={() => onAdd(counter)}
-              type="button"
-              className="container-fluid mt-2"
-              variant="outline-dark"
+              className="container-fluid mt-2 lightBtn"
+            //   variant="outline-dark"
             >
               Agregar al carrito
-            </Button>
+            </button>
           ) : (
             console.log("Nada para agregar")
           )}

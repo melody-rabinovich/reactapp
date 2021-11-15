@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../css/Item.css";
 
 function Item(item) {
   const {  title, stock, imageUrl } = item.item;
@@ -13,7 +14,7 @@ function Item(item) {
         <Card.Text>
           <Badge className="bg-light text-dark">Stock: {stock}</Badge>
         </Card.Text>
-        <Link className="btn btn-secondary" to={`/item/${title}`}>
+        <Link className="btn btn-secondary btn1" to={`/item/${title}`}>
           Ver mas
         </Link>
       </Card.Body>

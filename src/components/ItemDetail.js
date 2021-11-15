@@ -3,6 +3,7 @@ import { Card, Container, Spinner } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
 import { CartContextUse } from "../context/CartContext";
+import '../css/ItemDetail.css'
 
 const ItemDetail = (item) => {
   const {  title, imageUrl, description, price, stock } = item.item;

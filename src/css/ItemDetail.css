@@ -1,0 +1,7 @@
+.darkBtn{
+    color:white;
+    background-color: #5e03af;
+}
+.darktBtn:hover{
+    border:0.2px #5e03af ;
+}
