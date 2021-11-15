@@ -4,7 +4,7 @@ PROYECTO FINAL - MELODY MAIA RABINOVICH
 E-COMMERCE DE GUITARRAS
 
 
-características:
+características de la aplicación:
 
 	- división por categorías de cuatro marcas de guitarras.
 	- desde cada item, con el botón "ver más", se puede ver el producto en detalle, elegir una cantidad, agregar el item al carrito de compras y ver el carrito con los items cargados.
