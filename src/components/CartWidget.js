@@ -2,6 +2,7 @@ import React from "react"
 import { FaShoppingCart } from "react-icons/fa"
 import '../css/cartWidget.css';
 import { CartContextUse } from "../context/CartContext"
+import "../css/buttons.css";
 
 
 

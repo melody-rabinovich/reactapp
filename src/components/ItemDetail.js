@@ -3,7 +3,8 @@ import { Card, Container, Spinner } from "react-bootstrap";
 import ItemCount from "./ItemCount";
 import { Link } from "react-router-dom";
 import { CartContextUse } from "../context/CartContext";
-import '../css/ItemDetail.css'
+import '../css/ItemDetail.css';
+import "../css/buttons.css";
 
 const ItemDetail = (item) => {
   const {  title, imageUrl, description, price, stock } = item.item;
@@ -28,14 +29,14 @@ const ItemDetail = (item) => {
             <ItemCount stock={stock} initial={0} onAdd={onAdd} />
             {cart.length > 0 ? (
               <div>
-                <Link to="/cart" className="btn btn-dark m-3">
+                <Link to="/cart" className="btn btn-secondary m-3">
                   Ir al carrito
                 </Link>
               </div>
             ) : (
               console.log("Para finalizar compra primero agregar algo")
             )}
-            <Link className="btn btn-secondary" to="/">
+            <Link className="darkBtn text-light" to="/">
               Volver
             </Link>
           </Card.Body>

@@ -3,7 +3,7 @@ import logo from "../img/logo.png";
 import "../css/navBar.css";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
-import { CartContextUse } from "../context/CartContext"
+import { CartContextUse } from "../context/CartContext";
 
  
 function NavBar() {
@@ -20,22 +20,22 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="text-center">
           <Nav className="ms-auto">
-            <Link to="/" className="me-3 nav-link">
+            <Link to="/" className="me-3 navItem ">
               Inicio{" "}
             </Link>
-            <Link to="/category/taylor" className="me-3 nav-link ">
+            <Link to="/category/taylor" className="me-3 navItem ">
               Guitarras Taylor
             </Link>
-            <Link to="/category/martin" className="me-3 nav-link">
+            <Link to="/category/martin" className="me-3 navItem">
               Guitarras Martin & Co
             </Link>
-            <Link to="/category/gibson" className="me-3 nav-link">
+            <Link to="/category/gibson" className="me-3 navItem">
               Guitarras Gibson
             </Link>
-            <Link to="/category/fender" className="me-3 nav-link">
+            <Link to="/category/fender" className="me-3 navItem">
               Guitarras Fender
             </Link>
-            <Link to="/cart" className="nav-link active">
+            <Link to="/cart" className="navItem ">
               <CartWidget/>
             </Link>
           </Nav>

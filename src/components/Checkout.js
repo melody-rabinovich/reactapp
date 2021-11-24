@@ -4,6 +4,7 @@ import { CartContextUse } from "../context/CartContext";
 import { Redirect } from "react-router-dom";
 import { getFirestore } from "../firebase";
 import swal from "sweetalert";
+import "../css/buttons.css";
 
 const Checkout = () => {
   const { cart, totalPrice, setCart } = CartContextUse();
@@ -99,7 +100,7 @@ const Checkout = () => {
                   }}
                 />
               </Form.Group>
-              <Button className="w-100 mt-3" variant="secondary" type="submit">
+              <Button className="w-100 mt-3" variant="primary" type="submit">
                 Enviar orden
               </Button>
             </Form>

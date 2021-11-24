@@ -4,3 +4,16 @@ header{
     background-color: rgb(230, 230, 230);
     padding:0 ;
 }
+
+.navItem{
+    color:#004aad;
+    text-decoration: none;
+    padding:0.5em;
+    font-size: large;
+    font-weight: 700;
+}
+
+.navItem:hover{
+    color:#5e03af;
+    text-decoration: underline #5e03af 2px;
+}

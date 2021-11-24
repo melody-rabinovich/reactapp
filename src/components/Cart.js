@@ -2,6 +2,7 @@ import React, {useState}  from "react";
 import { Button, Container, ListGroup } from "react-bootstrap";
 import { CartContextUse } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import "../css/buttons.css";
 
 const Cart = () => {
   const { clear, removeItem, cart, totalPrice, addQuantity, reduceQuantity } = CartContextUse();
@@ -54,7 +55,7 @@ const Cart = () => {
             <h5 className="mt-5 align-self-end text-center">
               Total a pagar: ${totalPrice}
             </h5>
-            <Link to="/cart/checkout" className="btn btn-outline-secondary mt-5 align-self-end">Finalizar compra</Link>
+            <Link to="/cart/checkout" className="btnSpecial mt-5 align-self-end">Finalizar compra</Link>
             <Button onClick={clear} className="w-25 mt-5" variant="secondary">
               Vaciar carrito
             </Button>{" "}
@@ -62,7 +63,7 @@ const Cart = () => {
         ) : (
           <h5>El carrito esta vacio </h5>
         )}
-        <Link to="/" className="btn btn-dark mt-3 w-25">
+        <Link to="/" className="btnSpecial align-self-center mt-3 w-25">
           Seguir comprando
         </Link>
       </div>
